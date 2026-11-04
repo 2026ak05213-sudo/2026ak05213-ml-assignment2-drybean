@@ -1,0 +1,5 @@
+__pycache__/
+.DS_Store
+*.pdf
+Dry_Bean_Dataset.csv
+DryBeanDataset/
