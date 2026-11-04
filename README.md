@@ -13,9 +13,9 @@ Predict the variety of a dry bean grain from geometric measurements extracted fr
 - **Train/test split:** 80/20 stratified split, `random_state=42` (2,723 test rows saved as `test_data.csv`)
 
 ## c. GitHub Repository
-<https://github.com/<your-username>/<repo>>
+<https://github.com/2026ak05213-sudo/2026ak05213-ml-assignment2-drybean>
 
-Live app: <https://<your-app>.streamlit.app>
+Live app: <https://2026ak05213-ml-assignment2-drybean-yalvhpfejzgbc7h75ef5n6.streamlit.app/>
 
 ## d. Models Used
 
