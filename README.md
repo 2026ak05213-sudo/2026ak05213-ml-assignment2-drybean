@@ -22,7 +22,7 @@ Live app: <https://2026ak05213-ml-assignment2-drybean-yalvhpfejzgbc7h75ef5n6.str
 | ML Model Name | Accuracy | AUC | Precision | Recall | F1 | MCC |
 |---|---|---|---|---|---|---|
 | Logistic Regression | 0.9214 | 0.9934 | 0.9222 | 0.9214 | 0.9216 | 0.9050 |
-| Decision Tree | 0.9041 | 0.9794 | 0.9038 | 0.9041 | 0.9038 | 0.8841 |
+| Decision Tree | 0.9041 | 0.9789 | 0.9038 | 0.9041 | 0.9038 | 0.8841 |
 | KNN | 0.9137 | 0.9837 | 0.9144 | 0.9137 | 0.9139 | 0.8956 |
 | Naive Bayes | 0.8979 | 0.9902 | 0.9007 | 0.8979 | 0.8981 | 0.8773 |
 | Support Vector Machine | 0.9221 | 0.9937 | 0.9224 | 0.9221 | 0.9222 | 0.9059 |
@@ -34,7 +34,7 @@ Precision, recall and F1 are weighted averages; AUC is one-vs-rest (weighted). V
 | ML Model Name | Observation about model performance |
 |---|---|
 | Logistic Regression | Accuracy 0.9214 and AUC 0.9934, second only to SVM. After scaling, the classes are largely separable by linear boundaries, so a simple model performs strongly. |
-| Decision Tree | Accuracy 0.9041, below all models except Naive Bayes. Axis-aligned splits with limited depth (8) struggle with the overlapping, correlated size features, and the lowest AUC (0.9794) reflects coarse probability estimates from leaf nodes. |
+| Decision Tree | Accuracy 0.9041, below all models except Naive Bayes. Axis-aligned splits with limited depth (8) struggle with the overlapping, correlated size features, and the lowest AUC (0.9789) reflects coarse probability estimates from leaf nodes. |
 | KNN | Accuracy 0.9137 with k=7. Works well on scaled features, but classes with similar shapes overlap in feature space, and prediction is slower than the parametric models. |
 | Naive Bayes | Lowest accuracy (0.8979) and MCC (0.8773), yet a high AUC (0.9902). Several features (Area, Perimeter, ConvexArea, EquivDiameter) are strongly correlated, which breaks the independence assumption and hurts hard predictions, while the ranking of class probabilities stays good. |
 | Support Vector Machine | Best on every metric: accuracy 0.9221, AUC 0.9937, MCC 0.9059. The RBF kernel captures non-linear class boundaries and copes well with correlated features. Training is slower than the other models. |
