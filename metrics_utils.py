@@ -1,4 +1,4 @@
-"""Shared evaluation helpers (used by train_models.py and app.py)."""
+"""Evaluation metric helpers."""
 import numpy as np
 from sklearn.metrics import (
     accuracy_score, roc_auc_score, precision_score,
@@ -7,12 +7,7 @@ from sklearn.metrics import (
 
 
 def compute_metrics(y_true, y_pred, y_proba, n_classes):
-    """Return the six required metrics as a dict.
-
-    Binary problem      -> precision/recall/F1 use average='binary'
-    Multi-class problem -> precision/recall/F1 use average='weighted',
-                           AUC uses one-vs-rest.
-    """
+    """Return Accuracy, AUC, Precision, Recall, F1 and MCC as a dict."""
     avg = "binary" if n_classes == 2 else "weighted"
 
     try:
@@ -24,7 +19,7 @@ def compute_metrics(y_true, y_pred, y_proba, n_classes):
                 average="weighted", labels=list(range(n_classes)),
             )
     except ValueError:
-        # e.g. the uploaded test file contains only one class
+        # AUC is undefined when the file has a single class
         auc = np.nan
 
     return {
