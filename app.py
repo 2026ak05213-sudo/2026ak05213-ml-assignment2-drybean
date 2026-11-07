@@ -130,3 +130,6 @@ for name, m in models.items():
     rows[name] = compute_metrics(y_true, m.predict(X), m.predict_proba(X), len(classes))
 comparison = pd.DataFrame(rows).T.round(4)
 st.dataframe(comparison.style.highlight_max(axis=0, color="#cfe8cf"))
+
+st.markdown("---")
+st.caption("Logesh S | 2026AK05213 | AIMLZG565 - ML Assignment 2")
