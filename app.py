@@ -1,9 +1,4 @@
-"""
-Streamlit app: evaluate pre-trained classifiers on an uploaded TEST csv.
-Models are loaded from /model - nothing is retrained here.
-
-Customise the title, text, colours and layout so the UI is your own.
-"""
+"""Dry Bean classifier evaluation app (pre-trained models, no retraining)."""
 import json
 import os
 
@@ -18,7 +13,22 @@ from metrics_utils import compute_metrics
 
 MODEL_DIR = "model"
 
-st.set_page_config(page_title="Classifier Evaluation Dashboard", layout="wide")
+st.set_page_config(page_title="Dry Bean Classifier Dashboard", page_icon="🌱", layout="wide")
+
+st.markdown(
+    """
+    <style>
+    .banner {background: linear-gradient(90deg, #0f766e, #14b8a6); color: white;
+             padding: 1.1rem 1.5rem; border-radius: 10px; margin-bottom: 1rem;}
+    .banner h1 {margin: 0; font-size: 1.9rem; color: white;}
+    .banner p {margin: 0.3rem 0 0 0; opacity: 0.92; font-size: 0.95rem;}
+    div[data-testid="stMetric"] {background: #f1f5f9; border-left: 4px solid #0f766e;
+             padding: 0.6rem 0.8rem; border-radius: 6px;}
+    div[data-testid="stMetric"] label, div[data-testid="stMetricValue"] {color: #0f172a;}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 
 @st.cache_resource
@@ -38,9 +48,21 @@ class_to_idx = {c: i for i, c in enumerate(classes)}
 st.sidebar.header("Controls")
 uploaded = st.sidebar.file_uploader("Upload test data (CSV)", type="csv")
 model_name = st.sidebar.selectbox("Select model", list(models.keys()))
+st.sidebar.markdown("---")
+st.sidebar.markdown(
+    "**Logesh S**  \nStudent ID: 2026AK05213  \nAIMLZG565 | M.Tech (AIML)  \nBITS Pilani"
+)
 
 # ------------------------------ Main ----------------------------------
-st.title("Classifier Evaluation Dashboard")
+st.markdown(
+    """
+    <div class="banner">
+      <h1>Dry Bean Classifier Dashboard</h1>
+      <p>ML Assignment 2 &nbsp;|&nbsp; Logesh S &nbsp;|&nbsp; 2026AK05213</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 st.caption(
     f"Target column: **{target_col}** | Classes: {', '.join(classes)} | "
     "Models are pre-trained; uploaded data is used only for evaluation."
@@ -102,7 +124,7 @@ with right:
     st.dataframe(pd.DataFrame(report).T.round(3))
 
 # --------------------- All-model comparison on this file ---------------
-st.subheader("All models on the uploaded data")
+st.subheader("All models compared on the uploaded data")
 rows = {}
 for name, m in models.items():
     rows[name] = compute_metrics(y_true, m.predict(X), m.predict_proba(X), len(classes))
