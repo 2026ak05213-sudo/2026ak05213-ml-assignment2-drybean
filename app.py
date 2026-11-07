@@ -24,7 +24,7 @@ st.markdown(
     .banner p {margin: 0.3rem 0 0 0; opacity: 0.92; font-size: 0.95rem;}
     div[data-testid="stMetric"] {background: #f1f5f9; border-left: 4px solid #0f766e;
              padding: 0.6rem 0.8rem; border-radius: 6px;}
-    div[data-testid="stMetric"] label, div[data-testid="stMetricValue"] {color: #0f172a;}
+    div[data-testid="stMetric"] * {color: #0f172a !important;}
     </style>
     """,
     unsafe_allow_html=True,
@@ -129,7 +129,8 @@ rows = {}
 for name, m in models.items():
     rows[name] = compute_metrics(y_true, m.predict(X), m.predict_proba(X), len(classes))
 comparison = pd.DataFrame(rows).T.round(4)
-st.dataframe(comparison.style.highlight_max(axis=0, color="#cfe8cf"))
+st.dataframe(comparison.style.highlight_max(
+    axis=0, props="background-color: #cfe8cf; color: #0f172a; font-weight: 600;"))
 
 st.markdown("---")
 st.caption("Logesh S | 2026AK05213 | AIMLZG565 - ML Assignment 2")
